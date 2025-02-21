@@ -3,10 +3,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ProductService {
+  final http.Client client; // 依賴注入 HTTP Client
+  ProductService({http.Client? client}) : client = client ?? http.Client();
+
   final String baseUrl = "https://fakestoreapi.com/products";
 
   Future<List<ProductModel>> fetchProducts() async {
-    final response = await http.get(Uri.parse(baseUrl));
+    final response = await client.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);
       return jsonData.map((item) => ProductModel.fromJson(item)).toList();
@@ -16,7 +19,7 @@ class ProductService {
   }
 
   Future<ProductModel> fetchProductById(int id) async {
-    final response = await http.get(Uri.parse("$baseUrl/$id"));
+    final response = await client.get(Uri.parse("$baseUrl/$id"));
     if (response.statusCode == 200) {
       return ProductModel.fromJson(json.decode(response.body));
     } else {
