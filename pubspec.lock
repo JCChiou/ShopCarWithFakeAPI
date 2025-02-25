@@ -262,6 +262,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_image_test_utils:
+    dependency: "direct dev"
+    description:
+      name: flutter_image_test_utils
+      sha256: "91b9007beb2d7d6e4a9d86775bbe21fa681f0a4b95d9518756edfa58aaad1189"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
