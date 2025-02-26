@@ -41,6 +41,8 @@ dependencies:
   mocktail: ^1.0.0
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
   flutter_image_test_utils: ^1.0.0
