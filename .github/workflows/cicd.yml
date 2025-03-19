@@ -13,8 +13,11 @@ jobs:
         run: flutter pub get
 
       # ✅ 1️⃣ 動態建立 `.env`，如果使用 GitHub Secrets，則替換為 secrets 變數
-      - name: Create .env file
+      - name: Create .env file in assets directory
         run: |
-          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+            mkdir -p assets
+            echo "BASE_URL=${{ secrets.BASE_URL }}" > assets/.env
+      - name: Check .env file
+        run: cat .env
       - name: Run Flutter Tests
         run: flutter test --coverage
