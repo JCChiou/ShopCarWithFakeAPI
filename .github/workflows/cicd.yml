@@ -15,7 +15,7 @@ jobs:
       # ✅ 1️⃣ 動態建立 `.env`，如果使用 GitHub Secrets，則替換為 secrets 變數
       - name: Create .env file
         run: |
-            echo "BASE_URL=${{ secrets.BASE_URL }}" > assets/.env
+            echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
       - name: Check .env file
         run: cat .env
       - name: Run Flutter Tests
