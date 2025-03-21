@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:fake_shopcar/modles/product_model.dart';
 import 'package:fake_shopcar/services/product_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,9 +22,7 @@ void main() {
     // 🔹 註冊 Uri 的 fallback value，解決 `any<Uri>()` 的問題
     registerFallbackValue(FakeUri());
     headers = {'content-type': 'application/json; charset=utf-8'};
-  });
 
-  setUp(() {
     mockHttpClient = MockHttpClient();
     productService = ProductService(client: mockHttpClient);
   });
