@@ -1,10 +1,11 @@
 import 'dart:convert';
-
 import 'package:fake_shopcar/modles/product_model.dart';
 import 'package:fake_shopcar/services/product_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
+
+import '../test_helper.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
@@ -15,13 +16,13 @@ void main() {
   late MockHttpClient mockHttpClient;
   late Map<String, String> headers;
 
-  setUpAll(() {
+  setUpAll(() async {
+
+    await setupTestEnv();
     // 🔹 註冊 Uri 的 fallback value，解決 `any<Uri>()` 的問題
     registerFallbackValue(FakeUri());
     headers = {'content-type': 'application/json; charset=utf-8'};
-  });
 
-  setUp(() {
     mockHttpClient = MockHttpClient();
     productService = ProductService(client: mockHttpClient);
   });
