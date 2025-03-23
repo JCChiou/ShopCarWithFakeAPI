@@ -1,29 +1,27 @@
 name: Flutter Test
-on: [ pull_request ]
+on: [pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.27.0'
+
       - name: Install dependencies
         run: flutter pub get
 
-      # ✅ 1️⃣ 動態建立 `.env`，如果使用 GitHub Secrets，則替換為 secrets 變數
       - name: Create .env file in assets/
         run: |
           mkdir -p assets
-          echo "BASE_URL=${{ secrets.BASE_URL }}" > assets/.env
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> assets/.env
+          echo "API_KEY=${{ secrets.API_KEY }}" >> assets/.env
 
       - name: Check .env file
         run: cat assets/.env
-#      - name: Create .env file
-#        run: |
-#            echo "BASE_URL=${{ secrets.BASE_URL }}" > .env
-#      - name: Check .env file
-#        run: cat .env
+
       - name: Run Flutter Tests
         run: flutter test --coverage
