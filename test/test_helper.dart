@@ -9,6 +9,7 @@ Future<void> setupTestEnv() async {
     if (kDebugMode) {
       print("⚠️  Running in CI/CD mode, using GitHub Secrets");
     }
+    await dotenv.load(fileName: "assets/.env");
     return;
   }
 
