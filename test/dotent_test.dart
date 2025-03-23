@@ -6,7 +6,8 @@ import 'test_helper.dart';
 
 void main() {
   group('Dotenv Test', () {
-    var envPath = getEnvFilePath();
+    final envPath = '${Directory.current.path}/assets/.env';
+
     setUpAll(() async {
       await setupTestEnv();
       await dotenv.load(fileName: envPath);
